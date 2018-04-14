@@ -1,4 +1,4 @@
-package mjlib
+package mahjong
 
 import (
 	"fmt"
@@ -51,7 +51,7 @@ func checkHu(cards []int, max int) {
     tested[num] = true
 
     for i := 0; i < max; i++ {
-        if !GetHuInfo(&tm,cards, 34, 34, 34) {
+        if !CheckHu(&tm,cards, 34, 34, 34) {
             fmt.Printf("测试失败 i=%d\n", i)
 			printCards(cards)
         }
@@ -118,7 +118,7 @@ func testOneSuccess() {
 
     fmt.Println("测试1种能胡的牌型")
 	printCards(cards)
-    if GetHuInfo(&tm,cards, 34, 32, 33) {
+    if CheckHu(&tm,cards, 34, 32, 33) {
         fmt.Println("测试通过：胡牌")
     } else {
         fmt.Println("测试失败：能胡的牌型判断为不能胡牌")
@@ -135,7 +135,7 @@ func testOneFail() {
 
     fmt.Println("测试1种不能胡的牌型")
 	printCards(cards)
-    if !GetHuInfo(&tm,cards, 34, 34, 34) {
+    if !CheckHu(&tm,cards, 34, 34, 34) {
         fmt.Println("测试通过：不能胡牌")
     } else {
         fmt.Println("测试失败：不能胡牌的牌型判断为胡了")
@@ -153,7 +153,7 @@ func testTime(count int) {
 	printCards(cards)
     start := time.Now()
     for i:=0;i<count;i++{
-        GetHuInfo(&tm,cards, 34, 32, 33)
+        CheckHu(&tm,cards, 34, 32, 33)
     }
 	printCards(cards)
     fmt.Println("count=",count,"use time=",time.Now().Sub(start).Nanoseconds())
@@ -212,7 +212,7 @@ func benchmarkGetHuInfo(b *testing.B,guiNum int) {
         b.StopTimer()
         cards,guiIndex:=randomCards(guiNum)
         b.StartTimer()
-        GetHuInfo(&tm,cards, MaxCard, guiIndex, MaxCard)
+        CheckHu(&tm,cards, MaxCard, guiIndex, MaxCard)
     }
 }
 

@@ -1,8 +1,8 @@
-package mjlib
+package mahjong
 
 const MaxCard = 34
 
-func GetHuInfo(tblMgr *TableMgr, cards []int, curCard int, gui1 int, gui2 int) bool {
+func CheckHu(tblMgr *TableMgr, cards []int, curCard int, gui1 int, gui2 int) bool {
 	if curCard != MaxCard {
 		cards[curCard]++
 	}

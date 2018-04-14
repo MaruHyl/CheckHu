@@ -1,17 +1,17 @@
-package mjlib
+package global
 
-import "qipai/mjlib_go"
+import "mahjong"
 
-var GlobalTableMgr *mjlib.TableMgr
+var GlobalTableMgr *mahjong.TableMgr
 
 func Init(){
-	GlobalTableMgr=&mjlib.TableMgr{}
+	GlobalTableMgr=&mahjong.TableMgr{}
 	GlobalTableMgr.Init()
 	GlobalTableMgr.Gen()
 }
 
-func GetHuInfo(cards []int, curCard int, gui1 int, gui2 int) bool {
-	return mjlib.GetHuInfo(GlobalTableMgr,cards,curCard,gui1,gui2)
+func CheckHu(cards []int, curCard int, gui1 int, gui2 int) bool {
+	return mahjong.CheckHu(GlobalTableMgr,cards,curCard,gui1,gui2)
 }
 
 func DumpTable(dir string,compress bool) error{

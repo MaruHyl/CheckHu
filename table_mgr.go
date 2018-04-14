@@ -1,4 +1,4 @@
-package mjlib
+package mahjong
 
 import (
 	"fmt"
